@@ -220,3 +220,32 @@ function totalWages(totalWage,dailyWage)
 //we can use for lopp to display all element in map 
 console.log("UC8 All map elements:"+Array.from(empDailyWageMap));
 console.log("UC 8-Employee Wage from Map, Total Wage: "+Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+
+//Uc 9-Use dailywage map and daily hour map ,use arrow function
+//Uc 9A calculate total wahe and total hour worked
+//Ctreating arraow function
+const findTotal = (totalVal,DailyVal)=>
+{
+    return totalVal+DailyVal;
+}
+let count = 0;
+let totalHrs = Array.from(empDailyWageMap.values()).reduce(findTotal,0);
+let totalSalary = Array.from(empDailyWageMap.values()).filter(dailyWage=>dailyWage>0).reduce(findTotal,0);
+console.log("UC 9A- Employee wage with arrow:" + "Total Hours:"+totalHrs+ "Total Wages:" +totalSalary);
+
+//UC-9b show fll working day,part time and absent days
+let absentDays = new Array();
+let partWorkingDay = new Array();
+let fullWorkingDay = new Array();
+empDailyHours.forEach((value,key,map) =>
+{
+    if( value == 8)
+    fullWorkingDay.push(key);
+    else if(value == 4)
+    partWorkingDay.push(key);
+    else
+    absentDays.push(key);
+})
+console.log("Uc 9B-Full working days "+fullWorkingDay);
+console.log("Uc 9B-Part time days : "+partWorkingDay);
+console.log("Uc 9B-Absent days "+absentDays);
