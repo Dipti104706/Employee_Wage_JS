@@ -262,3 +262,29 @@ console.log("Uc 9B-Absent days "+absentDays);
 
 //UC-10 Use objects to store data
 console.log("UC 10 Daily hrs worked and wage earned "+empDailyWageAndHr);
+
+//Uc 11 object operations
+//Uc 11A- calculate total wage and total hour worked
+//UC11 arrow function using objects
+let totalWages1 = empDailyWageAndHr.filter(dailyHrsandwage=>dailyHrsandwage.Wage>0)
+            .reduce((totalWage,dailyHrswage)=>totalWage+=dailyHrswage.Wage,0);
+console.log("UC 11A- Total wage: "+totalWages1);
+
+let totalHours = empDailyWageAndHr.filter(dailyHrsandwage=>dailyHrsandwage.Wage>0)
+            .reduce((totalHours,dailyHrswage)=>totalHours+=dailyHrswage.hrsWorked,0);
+console.log("UC 11A- Total Hrs : "+totalHours);
+
+console.log("UC 11b- Full working day :");
+empDailyWageAndHr.filter(dailyHrswage=>dailyHrswage.hrsWorked == 8)
+                .forEach(dailyHrswage=>process.stdout.write(dailyHrswage.toString())); //process.stdout.write is same as console log it prints in the same line 
+
+let partTimearr = empDailyWageAndHr
+                .filter(dailyHrswage=>dailyHrswage.hrsWorked == 4)
+                .map(dailyHrswage=>dailyHrswage.toString());
+console.log("\n UC 11c -Part working day : "+partTimearr);
+
+let absentArr = empDailyWageAndHr
+                .filter(dailyHrswage=>dailyHrswage.hrsWorked == 0)
+                .map(dailyHrswage=>dailyHrswage.daysWorked);
+console.log("UC-11d) No working day : "+absentArr);
+
