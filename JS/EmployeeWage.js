@@ -132,6 +132,7 @@ while (totalEmpHrs1 <= MAX_HRS_IN_MONTH && totalWorkingDays1 < NUM_OF_WORKING_DA
   let empHrs1=getWorkinghours(empCheck1);
   empDailyHours.set(totalWorkingDays1,empHrs1); //Uc 9
   let empwage1=calculateDailyWage(empHrs1);
+  empDailyWageMap.set(totalWorkingDays1,empwage1);//uc8
   totalEmpHrs1 += empHrs1;
   empDailyWageArray.push(empwage1);
 }
@@ -208,3 +209,14 @@ function totalDaysWorked(numofDays,dailyWage)
     return numofDays;
 }
 console.log("UC 7G- Number of days employee worked : "+empDailyWageArray.reduce(totalDaysWorked,0));
+
+//UC-8 Using Map store the daily wage and also display total wage
+//console.log(empDailyWageMap);
+function totalWages(totalWage,dailyWage)
+{
+   return totalWage+dailyWage;
+}
+//Array.from create a array from the map result
+//we can use for lopp to display all element in map 
+console.log("UC8 All map elements:"+Array.from(empDailyWageMap));
+console.log("UC 8-Employee Wage from Map, Total Wage: "+Array.from(empDailyWageMap.values()).reduce(totalWages,0));
