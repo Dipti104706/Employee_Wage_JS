@@ -132,9 +132,19 @@ while (totalEmpHrs1 <= MAX_HRS_IN_MONTH && totalWorkingDays1 < NUM_OF_WORKING_DA
   let empHrs1=getWorkinghours(empCheck1);
   empDailyHours.set(totalWorkingDays1,empHrs1); //Uc 9
   let empwage1=calculateDailyWage(empHrs1);
-  empDailyWageMap.set(totalWorkingDays1,empwage1);//uc8
   totalEmpHrs1 += empHrs1;
   empDailyWageArray.push(empwage1);
+  empDailyWageMap.set(totalWorkingDays1,empwage1);//uc8
+  //Uc10 Object creation
+  empDailyWageAndHr.push({
+    //objects are created as daysWorked,hrsWorked,Wage
+    daysWorked:totalWorkingDays1,
+    hrsWorked:empHrs1,
+    Wage:empwage1,
+    toString(){
+      return "\n Day : "+this.daysWorked+", Working hours= "+this.hrsWorked+" and Wage earned "+this.Wage;
+    },
+  });
 }
 let empWage4 = calculateDailyWage(totalEmpHrs);
 console.log("Uc6-Total Days : " +totalWorkingDays1 +" Total Hours : " +totalEmpHrs +" Emp Wage : " +empWage3);
@@ -249,3 +259,6 @@ empDailyHours.forEach((value,key,map) =>
 console.log("Uc 9B-Full working days "+fullWorkingDay);
 console.log("Uc 9B-Part time days : "+partWorkingDay);
 console.log("Uc 9B-Absent days "+absentDays);
+
+//UC-10 Use objects to store data
+console.log("UC 10 Daily hrs worked and wage earned "+empDailyWageAndHr);
