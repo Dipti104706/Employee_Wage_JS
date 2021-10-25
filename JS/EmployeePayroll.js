@@ -1,22 +1,72 @@
 //UC 13 EmployeePayrollData templates with regex expression
 
-class EmployeePayrollData{
-    id;
-    gender;
-    salary;
-    startDate;
-    //constructor to store data
-    //params to pass any number of parameter not forced to give all parameters
-    constructor(...params)
-    { 
-        this.id = params[0];
-        this.name = params[1];
-        this.gender = params[2];
-        this.salary = params[3];
-        this.startDate = params[4];
+class EmployeePayrollData
+{   
+    //Getter and setter method
+    get id()
+    {   
+        return this._id;
+    }
+    set id(id)
+    {
+       let idRegex=RegExp("^[1-9][0-9]{0,}$");
+       if(idRegex.test(id)) //test() is to match input with regex pattern
+       {
+       this._id=id;
+       }
+       else
+       {
+           throw "Incorrect id";
+       }
+    }
+    get salary()
+    {
+        return this._salary;
+    }
+    set salary(salary)
+    {
+        let salaryRegex=RegExp("^[1-9][0-9]{2,}$");
+        if(salaryRegex.test(salary))
+        {
+        this._salary=salary
+       }
+       else
+       {
+        throw "Incorrect salary";
+       }
+    }
+    get gender()
+    {
+        return this._gender;
+    }
+    set gender(gender)
+    {
+        let genderRegex=RegExp("^[M|F|m|f]$");
+        if(genderRegex.test(gender))
+        {
+        this._gender=gender
+       }
+       else
+       {
+        throw "Incorrect gender";
+       }
     }
     
-    //Getter and setter method
+   get startDate()
+   {
+       return this._startDate;
+   }
+   set startDate(startDate)
+   {
+        if(startDate<=new Date())
+        {
+            this._startDate=startDate;
+        }
+        else
+        {
+            throw "Future date can not be valid";
+        }
+    }
     get name()
     {
         return this._name;
@@ -33,35 +83,57 @@ class EmployeePayrollData{
             throw "Incorrect name";   
         } 
     }
-
-    toString()
-    {
-        const options={year:'numeric',month:'long',day:'numeric'};
-        const empDate=this.startDate== undefined? "undefined":this.startDate.toLocaleDateString("en-US",options);
-        return "id = "+this.id+"\nName = "+this.name+"\nGender = "+this.gender+"\nSalary = "+this.salary+"\nStartdate = "+empDate;
-    }
-
 }
 
 let newEmployee=new EmployeePayrollData(1,"Mahima","F",30000,new Date());
-console.log(newEmployee.toString());
 
 try 
 {
     newEmployee.name = "yamini";
-    console.log(employee.toString());
+    console.log(newEmployee.toString());
 } 
 catch (ex) 
 {
     console.log("Pattern not matched")
     console.error(ex);
 }
-try 
+
+try
 {
-    let employee = new EmployeePayrollData(1,"Shashank",30000,"M",new Date());
-    console.log(employee.toString());
+    newEmployee.id=3;
+    console.log(newEmployee.id);
 }
-catch (ex) 
+catch(ex)
+{
+    console.error(ex);
+}
+
+try
+{
+    newEmployee.salary=50000;
+    console.log(newEmployee.salary);
+}
+catch(ex)
+{
+    console.error(ex);
+}
+
+try
+{
+    newEmployee.gender='m';
+    console.log(newEmployee.gender);
+}
+catch(ex)
+{
+    console.error(ex);
+}
+
+try
+{
+    newEmployee.startDate=new Date("2022-10-25");
+    console.log(newEmployee.startDate);
+}
+catch(ex)
 {
     console.error(ex);
 }
